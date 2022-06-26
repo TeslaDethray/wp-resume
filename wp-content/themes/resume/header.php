@@ -29,9 +29,9 @@
                         </span>
                     </h1>
                     <?php $summary = get_summary(); ?>
-                    <p>
-                        <?php echo $summary->phone_number; ?> • <?php echo $summary->email; ?>
-                    </p>
+<!--                    <p>-->
+<!--                        --><?php //echo $summary->phone_number; ?><!-- • --><?php //echo $summary->email; ?>
+<!--                    </p>-->
                     <p>
                         <a href="<?php echo $summary->github_url; ?>">
                             <?php echo $summary->github_url; ?>

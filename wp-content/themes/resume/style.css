@@ -3,7 +3,7 @@ Theme Name: Resume
 Theme URI: https://saram.cc
 Author: Sara McCutcheon
 Author URI: https://saram.cc/
-Version: 0.1
+Version: 1.0
 License: MIT
 License URI: https://mit-license.org/
 */
@@ -13,6 +13,7 @@ License URI: https://mit-license.org/
 :root {
     --black: #000000;
     --gray: #BDC3C7;
+    --gray-green: #95A5A6;
     --teal: #317589;
     --white: #ffffff;
 }
@@ -42,6 +43,11 @@ header a {
 
 header a:hover {
     color: var(--white);
+}
+
+time {
+    color: var(--gray-green);
+    font-weight: bold;
 }
 
 .h1, h1 {
