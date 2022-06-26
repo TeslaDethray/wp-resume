@@ -559,6 +559,7 @@ function get_summary() : object {
         'email' => strtolower(array_shift($custom_info['email_address'])),
         'github_url' => array_shift($custom_info['github_url']),
         'linkedin_url' => array_shift($custom_info['linkedin_url']),
+        'resume_url' => wp_get_attachment_url(array_shift($custom_info['resume_url'])),
         'phone_number' => array_shift($custom_info['phone_number']),
         'summary' => $post->post_content,
     ];

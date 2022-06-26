@@ -70,6 +70,25 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_62b810f745b86",
+            "label": "Resume URL",
+            "name": "resume_url",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -89,5 +108,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1656051960
+    "modified": 1656230162
 }

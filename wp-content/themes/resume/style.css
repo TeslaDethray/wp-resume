@@ -113,6 +113,11 @@ section:last-of-type {
     margin-bottom: 0.25rem;
 }
 
+.bottom-up-2 {
+    bottom: 2px;
+    position: relative;
+}
+
 @media (max-width: 1000px) {
     header.flex-item {
         padding-top: 2rem;
