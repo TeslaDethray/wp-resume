@@ -429,7 +429,7 @@ function get_skills() : array {
     return $skills;
 }
 
-function unserialize_skills(array $value, array $skills) : array|string {
+function unserialize_skills(array $value, array $skills) {
     $unserialized_data = array_shift($value);
     $data = maybe_unserialize($unserialized_data);
     if (!is_array($data)) {
@@ -475,7 +475,7 @@ function format_timespan($start_date_string, $end_date_string) : string {
     if ($year_span < 2) {
         $format_string = 'F Y';
     }
-    return sprintf('%d - %s', $start_date->format($format_string), $end_date->format($format_string));
+    return $start_date->format($format_string) . ' - ' . $end_date->format($format_string);
 }
 
 function get_education() : array {
