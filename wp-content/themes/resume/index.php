@@ -16,6 +16,9 @@
         <section>
             <?php include('archive-education.php'); ?>
         </section>
+        <section>
+            <?php include('archive-projects.php'); ?>
+        </section>
     </div>
 </main>
 

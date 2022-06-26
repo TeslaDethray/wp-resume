@@ -429,37 +429,38 @@ function get_skills() : array {
     return $skills;
 }
 
-function format_events ($info) : array {
+function unserialize_skills(array $value, array $skills) : array|string {
+    $unserialized_data = array_shift($value);
+    $data = maybe_unserialize($unserialized_data);
+    if (!is_array($data)) {
+        return $data;
+    }
+    return array_map(
+        function ($skill_id) use ($skills) {
+            return $skills[$skill_id];
+        },
+        $data
+    );
+}
+
+function format_events (array $info) : array {
+    $skills = get_skills();
     $fields = [
         'what_did_you_do' => function ($value) {
             return array_shift($value);
         },
         'what_skills_were_used' =>
-            function ($value) {
-                $serialized_string = array_shift($value);
-                return maybe_unserialize($serialized_string);
+            function ($value) use ($skills) {
+                return unserialize_skills($value, $skills);
             }
     ];
 
-    $skills = get_skills();
     $prepared = [];
     $i = 0;
     while (isset($info['events_' . $i . '_what_did_you_do'])) {
         $prepared[$i] = (object)[];
         foreach($fields as $field => $formatter) {
-            $datum = $info['events_' . $i . '_' . $field];
-            if (is_callable($formatter)) {
-                $datum = $formatter($datum);
-            }
-            if (is_array($datum)) {
-                $datum = array_map(
-                    function ($skill_id) use ($skills) {
-                        return $skills[$skill_id];
-                    },
-                    $datum
-                );
-            }
-            $prepared[$i]->{$field} = $datum;
+            $prepared[$i]->{$field} = $formatter($info['events_' . $i . '_' . $field]);
         }
         $i++;
     }
@@ -525,6 +526,26 @@ function get_experience() : array {
     }
     krsort($experience);
     return $experience;
+}
+
+function get_projects() : array {
+    $skills = get_skills();
+    $projects = [];
+    $posts = get_posts([
+        'numberposts' => -1,
+        'post_type' => 'project',
+    ]);
+    foreach ($posts as $post) {
+        $custom_info = get_post_custom($post->ID);
+        $projects[] = (object)[
+            'description' => $post->post_excerpt,
+            'skills' => unserialize_skills($custom_info['skills'], $skills),
+            'title' => $post->post_title,
+            'url' => array_shift($custom_info['url']),
+        ];
+    }
+    krsort($projects);
+    return $projects;
 }
 
 function get_summary() : object {
