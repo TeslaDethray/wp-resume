@@ -47,6 +47,7 @@
     "uglify-js": "^3.1.10"
   },
   "dependencies": {
+    "bootflat": "github:bootflat/bootflat.github.io",
     "jquery": "^3.2.1"
   }
 }

@@ -2,24 +2,25 @@
     <h2>Projects</h2>
     <?php $projects = get_projects(); ?>
     <?php foreach($projects as $project): ?>
-        <h3>
-            <?php echo $project->title; ?>
-        </h3>
-        <a href="<?php echo $project->url; ?>"><?php echo $project->url; ?></a>
-        <p>
-            <?php echo $project->description; ?>
-        </p>
-        <?php if (!empty($project->skills)) : ?>
+        <div class="item-box">
+            <h3 class="mb-quarter">
+                <?php echo $project->title; ?>
+            </h3>
+            <a href="<?php echo $project->url; ?>"><?php echo $project->url; ?></a>
             <p>
-                <strong>
-                    <?php echo implode(', ', array_map(
-                        function ($skill) {
-                            return $skill->skill;
-                        },
-                        $project->skills
-                    )); ?>
-                </strong>
+                <?php echo $project->description; ?>
+                <?php if (!empty($project->skills)) : ?>
+                    <br />
+                    <strong>
+                        <?php echo implode(', ', array_map(
+                            function ($skill) {
+                                return $skill->skill;
+                            },
+                            $project->skills
+                        )); ?>
+                    </strong>
+                <?php endif?>
             </p>
-        <?php endif?>
+        </div>
     <?php endforeach; ?>
 </section>

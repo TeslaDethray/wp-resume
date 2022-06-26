@@ -18,15 +18,28 @@
         <![endif]-->
     </head>
     <body <?php body_class(); ?>>
-        <header class="header" role="banner">
-            <div class="container">
-                <a href="#" class="nav-burger js-menu-toggle">
-                    <span class="nav-burger__line"></span>
-                    <span class="nav-burger__line"></span>
-                    <span class="nav-burger__line"></span>
-                </a>
-                <nav role="navigation" class="header__navigation">
-                    <?php wp_nav_menu(['theme_location' => 'header', 'menu_class' => 'nav nav--header']); ?>
-                </nav>
-            </div>
-        </header>
+        <div class="flex-container">
+            <header class="header flex-item teal-area" role="banner">
+                <div class="container">
+                    <h1>
+                        <?php bloginfo('name'); ?>
+                        <br />
+                        <span class="white-text">
+                            <?php bloginfo('description'); ?>
+                        </span>
+                    </h1>
+                    <?php $summary = get_summary(); ?>
+                    <p>
+                        <?php echo $summary->phone_number; ?> • <?php echo $summary->email; ?>
+                    </p>
+                    <p>
+                        <a href="<?php echo $summary->github_url; ?>">
+                            <?php echo $summary->github_url; ?>
+                        </a>
+                        <br />
+                        <a href="<?php echo $summary->linkedin_url; ?>">
+                            <?php echo $summary->linkedin_url; ?>
+                        </a>
+                    </p>
+                </div>
+            </header>

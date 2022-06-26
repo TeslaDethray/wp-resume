@@ -1,24 +1,11 @@
 <?php get_header(); ?>
 
-<main class="main" role="main">
+<main class="flex-item main" role="main">
     <div class="container">
-        <section>
-            <h1>
-		        <?php bloginfo('name'); ?>
-		        <br />
-		        <?php bloginfo('description'); ?>
-            </h1>
-            <?php include('archive-summary.php'); ?>
-        </section>
-        <section>
-          <?php include('archive-experience.php'); ?>
-        </section>
-        <section>
-            <?php include('archive-education.php'); ?>
-        </section>
-        <section>
-            <?php include('archive-projects.php'); ?>
-        </section>
+        <?php include('archive-summary.php'); ?>
+        <?php include('archive-experience.php'); ?>
+        <?php include('archive-education.php'); ?>
+        <?php include('archive-projects.php'); ?>
     </div>
 </main>
 
