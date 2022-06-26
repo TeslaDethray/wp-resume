@@ -31,7 +31,7 @@
                         <?php endif; ?>
                     </h1>
                     <?php $summary = get_summary(); ?>
-                    <?php if (!empty($summary->github_url) || !empty($summary->linkedin_url)) : ?>
+                    <?php if (!empty($summary) && (!empty($summary->github_url) || !empty($summary->linkedin_url))) : ?>
                         <p>
                             <?php if (!empty($summary->github_url)) : ?>
                                 <a href="<?php echo $summary->github_url; ?>">
