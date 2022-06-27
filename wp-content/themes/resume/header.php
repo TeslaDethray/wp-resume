@@ -17,7 +17,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
         <![endif]-->
     </head>
-    <body <?php body_class(); ?>>
+    <body <?php body_class(); ?> onload="resetAllFilters()">
         <div class="flex-container">
             <header class="header flex-item teal-area" role="banner">
                 <h1>

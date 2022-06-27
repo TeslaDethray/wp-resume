@@ -8,6 +8,7 @@
                     class="bi bi-x float-right"
                     fill="currentColor"
                     height="18"
+                    onclick="resetAllFilters()"
                     viewBox="0 0 16 16"
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -18,8 +19,9 @@
         </div>
         <?php foreach($skills as $skill): ?>
             <button
-                class="badge badge-default"
+                class="badge badge-default filterer"
                 id="<?php echo $skill->name; ?>"
+                onClick='toggleFilter(event)'
             >
                 <?php echo $skill->skill; ?>
             </button>
