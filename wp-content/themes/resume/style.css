@@ -104,6 +104,11 @@ main.flex-item {
     flex-grow: 3;
 }
 
+.teal-text {
+  color: var(--teal);
+}
+
+
 .white-text {
     color: var(--white);
 }

@@ -3,7 +3,7 @@
     <section>
         <h2>Projects</h2>
         <?php foreach($projects as $project): ?>
-            <div class="item-box">
+            <div class="item-box <?php echo get_filter_classes($project->skills); ?>">
                 <h3 class="mb-quarter">
                     <?php echo $project->title; ?>
                 </h3>

@@ -92,6 +92,52 @@
             "display_format": "Y\/m\/d",
             "return_format": "Y\/m\/d",
             "first_day": 0
+        },
+        {
+            "key": "field_62b97e5e99a0c",
+            "label": "Skills",
+            "name": "skills",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "skill"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "object"
+        },
+        {
+            "key": "field_62b9800da5f38",
+            "label": "Degree or Certificate",
+            "name": "degree",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -111,5 +157,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1656050738
+    "modified": 1656324133
 }

@@ -4,7 +4,7 @@
         <h2>Experience</h2>
         <?php foreach($experience as $job): ?>
             <div class="item-box">
-                <div class="filter <?php echo get_all_filter_classes($job); ?>">
+                <div class="<?php echo get_all_filter_classes($job); ?>">
                     <time><?php echo $job->timespan ?></time>
                     <br />
                     <h3 class="mt-half">
@@ -20,7 +20,7 @@
                 <?php if(count($job->events) > 1) : ?>
                     <ul>
                         <?php foreach($job->events as $event) : ?>
-                            <li class="filter <?php echo get_filter_classes($event->skills); ?>">
+                            <li class="<?php echo get_filter_classes($event->skills); ?>">
                                 <?php echo $event->what_did_you_do; ?>
                             </li>
                         <?php endforeach; ?>

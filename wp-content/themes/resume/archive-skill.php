@@ -8,7 +8,6 @@
                     class="bi bi-x float-right"
                     fill="currentColor"
                     height="18"
-                    onclick="clearAll()"
                     viewBox="0 0 16 16"
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -19,9 +18,8 @@
         </div>
         <?php foreach($skills as $skill): ?>
             <button
-                class="badge badge-default <?php echo isset($_COOKIE['filter-' . $skill->name]) ? 'active' : ''; ?>"
+                class="badge badge-default"
                 id="<?php echo $skill->name; ?>"
-                onclick="onClick(event)"
             >
                 <?php echo $skill->skill; ?>
             </button>
