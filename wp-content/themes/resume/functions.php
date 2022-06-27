@@ -413,19 +413,28 @@ function project_custom_post_type() {
 }
 add_action('init', 'project_custom_post_type');
 
-function get_skills() : array {
+function get_skills(bool $by_title = false) : array {
     $skills_posts = get_posts([
         'numberposts' => -1,
         'post_type' => 'skill',
     ]);
 
+
+
     $skills = [];
     foreach($skills_posts as $skill) {
-        $skills[$skill->ID] = (object)[
+        if ($by_title) {
+            $id = $skill->post_name;
+        } else {
+            $id = $skill->ID;
+        }
+        $skills[$id] = (object)[
             'id' => $skill->ID,
+            'name' => $skill->post_name,
             'skill' => $skill->post_title,
         ];
     }
+    ksort($skills);
     return $skills;
 }
 
@@ -449,7 +458,7 @@ function format_events (array $info) : array {
         'what_did_you_do' => function ($value) {
             return array_shift($value);
         },
-        'what_skills_were_used' =>
+        'skills' =>
             function ($value) use ($skills) {
                 return unserialize_skills($value, $skills);
             }
@@ -457,14 +466,33 @@ function format_events (array $info) : array {
 
     $prepared = [];
     $i = 0;
-    while (isset($info['events_' . $i . '_what_did_you_do'])) {
+    while (isset($info['events_' . $i . '_skills'])) {
         $prepared[$i] = (object)[];
         foreach($fields as $field => $formatter) {
             $prepared[$i]->{$field} = $formatter($info['events_' . $i . '_' . $field]);
         }
         $i++;
     }
-  return $prepared;
+    return $prepared;
+}
+
+function format_skills (array $info) : array {
+    $skills = get_skills();
+    $fields_skills = function ($value) use ($skills) {
+        if (is_array($value)) {
+            return unserialize_skills($value, $skills);
+        }
+        return [];
+    };
+
+    $prepared = [];
+    $i = 0;
+    $key = fn ($num) => 'events_' . $num . '_skills';
+    while (isset($info[$key($i)])) {
+        $prepared[$i] = $fields_skills($info[$key($i)]);
+        $i++;
+    }
+    return $prepared;
 }
 
 function format_timespan($start_date_string, $end_date_string) : string {
@@ -519,6 +547,7 @@ function get_experience() : array {
            'events' => format_events($custom_info),
            'job_title' => array_shift($custom_info['job_title']),
            'location' => array_shift($custom_info['company_location']),
+           'skills' => format_skills($custom_info),
            'start_date' => $start_date,
            'timespan' => format_timespan($start_date, $end_date),
            'url' => array_shift($custom_info['url']),
@@ -563,4 +592,32 @@ function get_summary() : object {
         'phone_number' => array_shift($custom_info['phone_number']),
         'summary' => $post->post_content,
     ];
+}
+
+function get_filter_classes($skills) : string {
+    if (!is_array($skills)) return '';
+    $skill_classes = array_map(
+        function ($skill) {
+            return 'filter-' . $skill->name;
+        },
+        $skills
+    );
+    return implode(' ', $skill_classes);
+}
+
+function get_all_filter_classes($job) : string {
+    $skill_classes = [];
+    foreach ($job->events as $event) {
+        if (is_array($event->skills)) {
+            $skills = array_map(
+                function ($skill) {
+                    return 'filter-' . $skill->name;
+                },
+                $event->skills
+            );
+            $skill_classes = array_merge($skill_classes, $skills);
+        }
+    }
+    $skill_classes = array_unique($skill_classes);
+    return implode(' ', $skill_classes);
 }

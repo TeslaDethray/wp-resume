@@ -119,7 +119,7 @@
                 {
                     "key": "field_62b69fe1e56ae",
                     "label": "What skills were used?",
-                    "name": "what_skills_were_used",
+                    "name": "skills",
                     "type": "relationship",
                     "instructions": "",
                     "required": 0,
@@ -194,6 +194,33 @@
             },
             "default_value": "",
             "placeholder": ""
+        },
+        {
+            "key": "field_62b942e7984d3",
+            "label": "Skills",
+            "name": "skills",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "skill"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "object"
         }
     ],
     "location": [
@@ -213,5 +240,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1656136556
+    "modified": 1656312115
 }
