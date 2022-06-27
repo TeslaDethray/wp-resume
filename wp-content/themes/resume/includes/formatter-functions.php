@@ -8,7 +8,7 @@
  * Unserializes the skill ID lists returned by the API
  * @param array $value
  * @param array $skills
- * @return array|mixed|string
+ * @return array|string
  */
 function unserialize_skills(array $value, array $skills) {
     $unserialized_data = array_shift($value);
@@ -88,8 +88,8 @@ function reduce_skills_to_name(array $skills) : array {
 /**
  * Returns the object itself if the data is empty and the first component of the array if not.
  * @param $data
- * @return mixed
+ * @return array|string
  */
-function shift_data(mixed $data) : mixed{
+function shift_data($data) {
     return !empty($data) ? array_shift($data) : $data;
 };

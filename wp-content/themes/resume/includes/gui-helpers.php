@@ -27,7 +27,7 @@ function get_all_filter_classes(object $job) : string {
  * @param array|string|null $skills
  * @return string
  */
-function get_filter_classes(mixed $skills) : string {
+function get_filter_classes($skills) : string {
     if (!is_array($skills)) return 'filter';
     return 'filter ' . implode(' ', reduce_skills_to_name($skills));
 }
