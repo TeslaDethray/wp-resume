@@ -6,7 +6,6 @@
 
 require_once 'includes/custom-functions.php';
 
-
 /**
  * Add support for useful stuff
  */
