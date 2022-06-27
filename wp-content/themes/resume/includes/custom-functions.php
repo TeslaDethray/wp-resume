@@ -171,6 +171,8 @@ function format_skills (array $info) : array {
         }
         return [];
     };
+    var_dump($fields_skills);
+    echo '<br/><br/>';
 
     $prepared = [];
     $i = 0;
@@ -269,6 +271,7 @@ function get_experience() : array {
         'numberposts' => -1,
         'post_type' => 'experience',
     ]);
+    $skills = get_skills();
 
     foreach ($posts as $post) {
         $custom_info = get_post_custom($post->ID);
@@ -281,7 +284,7 @@ function get_experience() : array {
             'events' => format_events($custom_info),
             'job_title' => shift_data($custom_info['job_title']),
             'location' => shift_data($custom_info['company_location']),
-            'skills' => format_skills($custom_info),
+            'skills' => unserialize_skills($custom_info['skills'], $skills),
             'start_date' => $start_date,
             'timespan' => format_timespan($start_date, $end_date),
             'url' => shift_data($custom_info['url']),
@@ -374,8 +377,8 @@ function get_summary() : object {
  * @return string
  */
 // TODO add job skills
-function get_all_filter_classes($job) : string {
-    $skill_classes = [];
+function get_all_filter_classes(object $job) : string {
+    $skill_classes = reduce_skills_to_name($job->skills);
     foreach ($job->events as $event) {
         if (is_array($event->skills)) {
             $skill_classes = array_merge($skill_classes, reduce_skills_to_name($event->skills));
