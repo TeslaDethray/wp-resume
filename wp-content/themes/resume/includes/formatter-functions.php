@@ -5,26 +5,6 @@
  *******************************/
 
 /**
- * Unserializes the skill ID lists returned by the API
- * @param array $value
- * @param array $skills
- * @return array|string
- */
-function unserialize_skills(array $value, array $skills) {
-    $unserialized_data = array_shift($value);
-    $data = maybe_unserialize($unserialized_data);
-    if (!is_array($data)) {
-        return $data;
-    }
-    return array_map(
-        function ($skill_id) use ($skills) {
-            return $skills[$skill_id];
-        },
-        $data
-    );
-}
-
-/**
  * Formats the events data and links skills
  * @param array $info
  * @param array $skills
@@ -54,24 +34,6 @@ function format_events(array $info, array $skills) : array {
 }
 
 /**
- * Formats two dates into a presentable string based on their distance to each other.
- * @param $start_date_string
- * @param $end_date_string
- * @return string
- * @throws Exception
- */
-function format_timespan($start_date_string, $end_date_string) : string {
-    $start_date = new DateTime($start_date_string);
-    $end_date = new DateTime($end_date_string);
-    $format_string = 'Y';
-    $year_span = (integer)$start_date->diff($end_date)->format('%R%y');
-    if ($year_span < 2) {
-        $format_string = 'F Y';
-    }
-    return $start_date->format($format_string) . ' - ' . $end_date->format($format_string);
-}
-
-/**
  * Takes an array of Skill objects and returns an array of their names.
  * @param $skills
  * @return array
@@ -93,3 +55,24 @@ function reduce_skills_to_name(array $skills) : array {
 function shift_data($data) {
     return !empty($data) ? array_shift($data) : $data;
 };
+
+/**
+ * Unserializes the skill ID lists returned by the API
+ * @param array $value
+ * @param array $skills
+ * @return array|string
+ */
+function unserialize_skills(array $value, array $skills) {
+    $unserialized_data = array_shift($value);
+    $data = maybe_unserialize($unserialized_data);
+    if (!is_array($data)) {
+        return $data;
+    }
+    return array_map(
+        function ($skill_id) use ($skills) {
+            return $skills[$skill_id];
+        },
+        $data
+    );
+}
+

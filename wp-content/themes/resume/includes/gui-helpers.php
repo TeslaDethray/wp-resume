@@ -31,3 +31,23 @@ function get_filter_classes($skills) : string {
     if (!is_array($skills)) return 'filter';
     return 'filter ' . implode(' ', reduce_skills_to_name($skills));
 }
+
+/**
+ * Formats two dates into a presentable string based on their distance to each other.
+ * @param $start_date_string
+ * @param $end_date_string
+ * @return string
+ * @throws Exception
+ */
+function format_timespan($start_date_string, $end_date_string) : string {
+    $start_date = new DateTime($start_date_string);
+    $end_date = new DateTime($end_date_string);
+    $format_string = 'Y';
+    $year_span = (integer)$start_date->diff($end_date)->format('%R%y');
+    if ($year_span < 2) {
+        $format_string = 'F Y';
+    }
+    return $start_date->format($format_string) . ' - ' . (empty($end_date_string) ? 'Present' : $end_date->format($format_string));
+
+}
+
