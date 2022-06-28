@@ -34,20 +34,26 @@ a {
   color: var(--teal);
 }
 
-header.flex-item {
-  background-color: var(--teal);
-  color: var(--gray);
-  padding-top: 5rem;
-}
-
-header a:active,
-header a:visited,
-header a {
+.teal-area a:active,
+.teal-area a:visited,
+.teal-area a {
   color: var(--gray);
 }
 
-header a:hover {
+.column a:hover {
   color: var(--white);
+}
+
+.column: {
+  display: block;
+}
+
+.row {
+  display: none;
+}
+
+.row.flex-item {
+  padding-bottom: 1rem;
 }
 
 time {
@@ -71,6 +77,7 @@ time {
 
 .h1, h1 {
   font-size: 2.5rem;
+  margin-top: 0;
 }
 
 .h2, h2 {
@@ -95,9 +102,26 @@ time {
   flex-direction: row;
 }
 
+.column .header.flex-container {
+  flex-direction: column;
+}
+
+.row .header.flex-container {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .flex-item {
   flex: 1 1;
   padding: 2rem;
+}
+
+.column .flex-item:last-of-type {
+  padding-top: 0;
+}
+
+.row .flex-item:last-of-type {
+  text-align: right;
 }
 
 .no-padding {
@@ -112,8 +136,12 @@ main.flex-item {
   color: var(--teal);
 }
 
+.teal-area {
+  background-color: var(--teal);
+  color: var(--gray);
+}
 
-.white-text {
+.offset-text {
   color: var(--white);
 }
 
@@ -159,16 +187,16 @@ section:last-of-type {
 }
 
 @media (max-width: 1450px) {
-  header.flex-item {
-    padding-top: 2rem;
+  .column {
+    display: none;
   }
-  header h1 {
-    margin-top: 0;
+  .row {
+    display: block;
   }
   .flex-container {
     flex-direction: column;
   }
-  .mt-8 {
-    margin-top: 2rem;
+  section.filter-list {
+    display: none;
   }
 }

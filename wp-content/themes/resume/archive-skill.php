@@ -1,6 +1,6 @@
 <?php $skills = get_skills(true); ?>
 <?php if (!empty($skills)) : ?>
-    <section class="mt-8">
+    <section class="filter-list mt-8">
         <div class="flex-container mb-quarter">
             <div class="white-text flex-item no-padding bottom-up-2">Filter</div>
             <div class="white-text flex-item no-padding">
