@@ -200,3 +200,28 @@ section:last-of-type {
     display: none;
   }
 }
+
+@media (max-width: 600px) {
+  .column {
+    display: none;
+  }
+  .row {
+    display: block;
+  }
+  .flex-container {
+    flex-direction: column;
+  }
+  section.filter-list {
+    display: none;
+  }
+  .row .header.flex-container {
+    flex-direction: column;
+  }
+  .row .flex-item:first-of-type {
+    padding-bottom: 0;
+  }
+  .row .flex-item:last-of-type {
+    padding-top: 0;
+    text-align: left;
+  }
+}
