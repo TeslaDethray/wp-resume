@@ -75,6 +75,14 @@ time {
   color: var(--white);
 }
 
+img {
+  background: var(--white); 
+  border: solid var(--gray) 1px; 
+  box-shadow: 0 0 15px rgba(49, 116, 137, 0.2); 
+  -webkit-box-shadow: 0 0 15px rgba(49, 116, 137, 0.2); 
+  -moz-box-shadow: 0 0 15px rgba(49, 116, 137, 0.2); 
+}
+
 .h1, h1 {
   font-size: 2.5rem;
   margin-top: 0;
@@ -212,7 +220,7 @@ li.widget {
   .row {
     display: block;
   }
-  .flex-container {
+  .flex-container:not(.photo) {
     flex-direction: column;
   }
   section.filter-list {
@@ -244,3 +252,4 @@ li.widget {
     text-align: left;
   }
 }
+
