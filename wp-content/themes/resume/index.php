@@ -6,6 +6,7 @@
         <?php include('archive-experience.php'); ?>
         <?php include('archive-education.php'); ?>
         <?php include('archive-projects.php'); ?>
+        <?php include('sidebar.php'); ?>
     </div>
 </main>
 

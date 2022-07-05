@@ -153,6 +153,25 @@ section:last-of-type {
   border-bottom: 0;
 }
 
+section .photo {
+  display: flex;
+  justify-content: space-between;
+}
+
+section .photo li {
+  flex: 1 1;
+  text-align: center;
+}
+
+section .photo li,
+section .photo li figure {
+  text-align: center;
+}
+
+li.widget {
+  display: inline-block;
+}
+
 .item-box {
   margin: 2rem 0;
 }
