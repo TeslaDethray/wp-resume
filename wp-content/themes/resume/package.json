@@ -1,6 +1,6 @@
 {
   "name": "resume",
-  "version": "1.0",
+  "version": "0.1.0",
   "author": "Sara McCutcheon",
   "description": "A straightforward resume which permits the user to filter by skills.",
   "private": true,
